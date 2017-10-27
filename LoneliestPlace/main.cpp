@@ -46,7 +46,6 @@ struct PlaceCollection
         dim
         > KD_tree_t;
         
-        
         KD_tree_t   tree(dim, *this, KDTreeSingleIndexAdaptorParams(10 /* max leaf */) );
         tree.buildIndex();
         
@@ -56,12 +55,9 @@ struct PlaceCollection
         nanoflann::KNNResultSet<double> resultSet(num_results);
         resultSet.init(ret_index, out_dist_sqr );
         
-        
         double maxDistanceSq = 0;
 
-        
         Place  mostIsolatedPlace;
-        
         
         //find nearest neighbour for each place, saving that place if it is the most isolated so far.
         for(auto place: places){
@@ -80,7 +76,6 @@ struct PlaceCollection
         }
         
         return mostIsolatedPlace;
-        
     };
     
     /* Adaptor interface for nanaoflann k-d tree  */
@@ -116,11 +111,13 @@ int main(int argc, const char * argv[]) {
     }
     
     auto placeCollection = PlaceCollection(inputFile);
-    
+    clock_t begin = clock();
     Place mostIsolatedPlace = placeCollection.mostIsolated();
+    clock_t end = clock();
+    double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
     
     std::cout << "Most Isolated Place is: " << mostIsolatedPlace.name << endl;
-    
+     std::cout << "Found in: " << elapsed_secs << " seconds" << endl;
     cout << "done" << endl;
     
     return 0;
