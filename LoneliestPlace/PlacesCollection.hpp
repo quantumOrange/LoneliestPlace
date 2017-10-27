@@ -28,7 +28,11 @@ struct PlaceCollection
 {
     vector<Place> places;
     
-    PlaceCollection(ifstream &inputFile);
+   // template<typename S>
+  //  PlaceCollection(S &inputStream);
+    
+    PlaceCollection(fstream &inputStream);
+    PlaceCollection(istream &inputStream);
     
     Place mostIsolated();
     
