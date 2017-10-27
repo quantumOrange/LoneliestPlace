@@ -25,6 +25,7 @@
 /* Begin PBXFileReference section */
 		ED4141831FA32A71005A8E9F /* LoneliestPlace */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LoneliestPlace; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED4141861FA32A72005A8E9F /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		ED41418D1FA32A96005A8E9F /* nanoflann.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = nanoflann.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +58,7 @@
 		ED4141851FA32A71005A8E9F /* LoneliestPlace */ = {
 			isa = PBXGroup;
 			children = (
+				ED41418D1FA32A96005A8E9F /* nanoflann.hpp */,
 				ED4141861FA32A72005A8E9F /* main.cpp */,
 			);
 			path = LoneliestPlace;
