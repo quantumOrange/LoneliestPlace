@@ -7,7 +7,9 @@
 //
 #include <stdlib.h>
 #include "PlacesCollection.hpp"
-
+/*
+     init with stream of place data.
+*/
 PlaceCollection::PlaceCollection(istream &inputStream){
     Place p;
     
@@ -20,28 +22,36 @@ PlaceCollection::PlaceCollection(istream &inputStream){
     }
 }
 
+/*
+     init with n random places.
+*/
 PlaceCollection::PlaceCollection(int n){
+    
     Place p;
+    
     for(int i=0; i< n; i++){
         
         p.name = "place" + to_string(i);
         p.x = rand()%10000;
         p.y = rand()%10000;
+
+        places.push_back(p);
         
-         places.push_back(p);
     }
 }
 
-
 /*
-     Find the most isolated place in the collection.
-     O(n log n), I think.
+     Finds the most isolated place in the collection.
+     performance: O(n log n).
 */
 Place PlaceCollection::mostIsolated(){
     
-    //Create a k-d tree
+    //Create a k-d tree.
+    //A k-d tree is data structure for spacial data that supports fast (O(log n)) look up of nearest neighbours.
+    //https://en.wikipedia.org/wiki/K-d_tree
     //I'm using the nanoflann implementaion of the k-d tree data structure.
     //https://github.com/jlblancoc/nanoflann
+    
     const int dim = 2;
     
     typedef KDTreeSingleIndexAdaptor<
@@ -58,7 +68,6 @@ Place PlaceCollection::mostIsolated(){
     double out_dist_sqr[2];
     nanoflann::KNNResultSet<double> resultSet(num_results);
    
-    
     double maxDistanceSq = 0;
     
     Place  mostIsolatedPlace;

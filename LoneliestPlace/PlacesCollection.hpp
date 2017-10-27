@@ -26,8 +26,7 @@ struct Place {
 
 struct PlaceCollection
 {
-    vector<Place> places;
-    
+public:
 
     PlaceCollection(istream &inputStream);
     PlaceCollection(int n);
@@ -46,6 +45,9 @@ struct PlaceCollection
     
     template <class BBOX>
     bool kdtree_get_bbox(BBOX& /*bb*/) const { return false; }
+    
+private:
+    vector<Place> places;
 };
 
 
