@@ -15,9 +15,11 @@
 #include "PlacesCollection.hpp"
 
 /*
-     Finds the most isolted place in a PlaceCollection and prints result and search time to the command line.
+     Finds the most isolated place from an input stream and prints result and search time to the command line.
 */
-void findMostIsolated(PlaceCollection placeCollection) {
+void findMostIsolated(std::istream &input) {
+    auto placeCollection = PlaceCollection(input);
+    //PlaceCollection placeCollection
     clock_t begin = clock();
     Place mostIsolatedPlace = placeCollection.mostIsolated();
     clock_t end = clock();
@@ -61,8 +63,8 @@ int main(int argc, const char * argv[]) {
     
     if(input == "k"){
         std::cout << "Input places followed by end of file." << std::endl;
-        auto placeCollection = PlaceCollection(std::cin);
-        findMostIsolated(placeCollection);
+       
+        findMostIsolated(std::cin);
     }
     else if(input == "m"){
         int ordersOfMagnitude = 6;
@@ -79,8 +81,7 @@ int main(int argc, const char * argv[]) {
             exit(1);
         }
         
-        auto placeCollection = PlaceCollection(inputFile);
-        findMostIsolated(placeCollection);
+        findMostIsolated(inputFile);
     }
  
     return 0;
