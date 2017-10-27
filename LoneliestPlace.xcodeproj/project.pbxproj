@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		ED4141871FA32A72005A8E9F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED4141861FA32A72005A8E9F /* main.cpp */; };
+		ED4141921FA34284005A8E9F /* PlacesCollection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED4141901FA34284005A8E9F /* PlacesCollection.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +29,8 @@
 		ED41418D1FA32A96005A8E9F /* nanoflann.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = nanoflann.hpp; sourceTree = "<group>"; };
 		ED41418E1FA32E6F005A8E9F /* problem_big.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = problem_big.txt; sourceTree = "<group>"; };
 		ED41418F1FA32E6F005A8E9F /* problem_small.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = problem_small.txt; sourceTree = "<group>"; };
+		ED4141901FA34284005A8E9F /* PlacesCollection.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PlacesCollection.cpp; sourceTree = "<group>"; };
+		ED4141911FA34284005A8E9F /* PlacesCollection.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PlacesCollection.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +65,8 @@
 			children = (
 				ED41418D1FA32A96005A8E9F /* nanoflann.hpp */,
 				ED4141861FA32A72005A8E9F /* main.cpp */,
+				ED4141901FA34284005A8E9F /* PlacesCollection.cpp */,
+				ED4141911FA34284005A8E9F /* PlacesCollection.hpp */,
 				ED41418E1FA32E6F005A8E9F /* problem_big.txt */,
 				ED41418F1FA32E6F005A8E9F /* problem_small.txt */,
 			);
@@ -126,6 +131,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED4141871FA32A72005A8E9F /* main.cpp in Sources */,
+				ED4141921FA34284005A8E9F /* PlacesCollection.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
