@@ -5,7 +5,7 @@
 //  Created by David Crooks on 27/10/2017.
 //  Copyright © 2017 David Crooks. All rights reserved.
 //
-
+#include <stdlib.h>
 #include "PlacesCollection.hpp"
 
 PlaceCollection::PlaceCollection(istream &inputStream){
@@ -23,11 +23,16 @@ PlaceCollection::PlaceCollection(istream &inputStream){
 PlaceCollection::PlaceCollection(int n){
     Place p;
     for(int i=0; i< n; i++){
-        p.name = "place";
-        p.x = 1;
-        p.y = 2;
+        
+        p.name = "place" + to_string(i);
+        p.x = rand()%10000;
+        p.y = rand()%10000;
+        
+         places.push_back(p);
     }
 }
+
+
 /*
      Find the most isolated place in the collection.
      O(n log n), I think.

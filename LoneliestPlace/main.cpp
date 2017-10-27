@@ -23,14 +23,33 @@ void findMostIsolated(PlaceCollection placeCollection) {
     clock_t end = clock();
     double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
     
-    std::cout << "Most Isolated Place is: " << mostIsolatedPlace.name << endl;
+    std::cout << "The most Isolated Place is: " << mostIsolatedPlace.name << endl;
     std::cout << "Found in: " << elapsed_secs << " seconds" << endl;
-    cout << "done" << endl;
+   
+}
+
+void measurePerformance(int maxOrderOfMagnitude){
+    for(int i=1; i <= maxOrderOfMagnitude ; i++){
+        
+        int n = pow(10,i);
+        
+        auto placeCollection = PlaceCollection(n);
+        
+        
+        clock_t begin = clock();
+        Place mostIsolatedPlace = placeCollection.mostIsolated();
+        clock_t end = clock();
+        
+        double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
+        
+       
+        cout << "N = " << n  << "\n      Search time:  " << elapsed_secs << "\n      Relative to n log(n) : "  << elapsed_secs/ (n * log(n)) << endl ;
+    }
 }
 
 int main(int argc, const char * argv[]) {
     
-    cout << "Enter the path to a file containingg a list of places, hit k to enter places from the keyboard, or m to measure performance on random data." << endl;
+    cout << "Enter the path to a file containing a list of places, hit k to enter places from the keyboard, or m to measure performance on random data." << endl;
     
     string input;
     
@@ -42,18 +61,18 @@ int main(int argc, const char * argv[]) {
        findMostIsolated(placeCollection);
     }
     else if(input == "m"){
-        
+        int ordersOfMagnitude = 6;
+        measurePerformance(ordersOfMagnitude);
     }
     else {
+        //The input should be a file path
         ifstream inputFile;
-        
-        cout << "Please input the path to a file containing a list of places:" << endl;
         
         inputFile.open(input);
         
         if (!inputFile) {
             cerr << "Unable to open file";
-            exit(1);   // call system to stop
+            exit(1);
         }
         
         auto placeCollection = PlaceCollection(inputFile);
