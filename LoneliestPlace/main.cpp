@@ -10,7 +10,7 @@
 #include <fstream>
 #include <vector>
 #include <ctime>
-
+//#include <string>
 #include "nanoflann.hpp"
 using namespace std;
 using namespace nanoflann;
@@ -58,20 +58,24 @@ struct PlaceCollection
         
         
         double maxDistanceSq = 0;
-        //int mostIsolatedIndex = side;
+
+        
         Place  mostIsolatedPlace;
         
+        
+        //find nearest neighbour for each place, saving that place if it is the most isolated so far.
         for(auto place: places){
             
             resultSet.init(ret_index, out_dist_sqr );
+            ///create a test point from the current place
             double query_pt[dim] = {double(place.x) , double(place.y)};
+            //find the two nearest neighbours for the test point. The first should be the current place itself, the second will be its nearest neighbour.
             tree.findNeighbors(resultSet, &query_pt[0], nanoflann::SearchParams(10));
             
             if (out_dist_sqr[1] > maxDistanceSq ) {
-
+                //The current place is the most isolated so far.
                 maxDistanceSq = out_dist_sqr[1];
                 mostIsolatedPlace = place;
-                
             }
         }
         
@@ -98,7 +102,13 @@ int main(int argc, const char * argv[]) {
   
     ifstream inputFile;
     
-    inputFile.open("/Users/decrooks/Developer/WRLD/cpp/LoneliestPlace/LoneliestPlace/problem_small.txt");
+    cout << "Please input the path to a file containing a list of places:" << endl;
+    
+    string filePath;
+    
+    cin >> filePath;
+    
+    inputFile.open(filePath);
     
     if (!inputFile) {
         cerr << "Unable to open file";
