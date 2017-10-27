@@ -8,33 +8,6 @@
 
 #include "PlacesCollection.hpp"
 
-
-/*
-template<typename S>
-PlaceCollection::PlaceCollection(S &inputStream){
-    Place p;
-    
-    while (inputStream >> p.name) {
-        
-        inputStream >> p.x;
-        inputStream >> p.y;
-        
-        places.push_back(p);
-    }
-}
-*/
-PlaceCollection::PlaceCollection(fstream &inputStream){
-    Place p;
-    
-    while (inputStream >> p.name) {
-        
-        inputStream >> p.x;
-        inputStream >> p.y;
-        
-        places.push_back(p);
-    }
-}
-
 PlaceCollection::PlaceCollection(istream &inputStream){
     Place p;
     
@@ -47,12 +20,20 @@ PlaceCollection::PlaceCollection(istream &inputStream){
     }
 }
 
-
+PlaceCollection::PlaceCollection(int n){
+    Place p;
+    for(int i=0; i< n; i++){
+        p.name = "place";
+        p.x = 1;
+        p.y = 2;
+    }
+}
 /*
      Find the most isolated place in the collection.
      O(n log n), I think.
 */
 Place PlaceCollection::mostIsolated(){
+    
     //Create a k-d tree
     //I'm using the nanoflann implementaion of the k-d tree data structure.
     //https://github.com/jlblancoc/nanoflann
@@ -71,7 +52,7 @@ Place PlaceCollection::mostIsolated(){
     size_t ret_index[2];
     double out_dist_sqr[2];
     nanoflann::KNNResultSet<double> resultSet(num_results);
-    resultSet.init(ret_index, out_dist_sqr );
+   
     
     double maxDistanceSq = 0;
     
@@ -80,9 +61,12 @@ Place PlaceCollection::mostIsolated(){
     //find nearest neighbour for each place, saving that place if it is the most isolated so far.
     for(auto place: places){
         
+        //clear the result set
         resultSet.init(ret_index, out_dist_sqr );
-        ///create a test point from the current place
+        
+        //create a test point from the current place
         double query_pt[dim] = {double(place.x) , double(place.y)};
+        
         //find the two nearest neighbours for the test point. The first should be the current place itself, the second will be its nearest neighbour.
         tree.findNeighbors(resultSet, &query_pt[0], nanoflann::SearchParams(10));
         
