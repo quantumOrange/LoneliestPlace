@@ -7,10 +7,16 @@
 //
 #include <stdlib.h>
 #include "PlacesCollection.hpp"
+#include "nanoflann.hpp"
+
+
+using namespace nanoflann;
+
+
 /*
      init with stream of place data.
 */
-PlaceCollection::PlaceCollection(istream &inputStream){
+PlaceCollection::PlaceCollection(std::istream &inputStream){
     Place p;
     
     while (inputStream >> p.name) {
@@ -31,7 +37,7 @@ PlaceCollection::PlaceCollection(int n){
     
     for(int i=0; i< n; i++){
         
-        p.name = "place" + to_string(i);
+        p.name = "place" + std::to_string(i);
         p.x = rand()%10000;
         p.y = rand()%10000;
 

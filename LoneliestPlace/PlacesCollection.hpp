@@ -10,25 +10,21 @@
 #define PlacesCollection_hpp
 
 #include <stdio.h>
-
 #include <fstream>
 #include <vector>
 #include <ctime>
-//#include <string>
-#include "nanoflann.hpp"
-using namespace std;
-using namespace nanoflann;
+
 
 struct Place {
     int x,y;
-    string name;
+    std::string name;
 };
 
 struct PlaceCollection
 {
 public:
 
-    PlaceCollection(istream &inputStream);
+    PlaceCollection(std::istream &inputStream);
     PlaceCollection(int n);
     
     Place mostIsolated();
@@ -47,7 +43,7 @@ public:
     bool kdtree_get_bbox(BBOX& /*bb*/) const { return false; }
     
 private:
-    vector<Place> places;
+    std::vector<Place> places;
 };
 
 

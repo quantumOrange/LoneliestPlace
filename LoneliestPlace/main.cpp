@@ -10,12 +10,9 @@
 #include <fstream>
 #include <vector>
 #include <ctime>
+#include <cmath>
 
-#include "nanoflann.hpp"
 #include "PlacesCollection.hpp"
-
-using namespace std;
-using namespace nanoflann;
 
 /*
      Finds the most isolted place in a PlaceCollection and prints result and search time to the command line.
@@ -26,21 +23,22 @@ void findMostIsolated(PlaceCollection placeCollection) {
     clock_t end = clock();
     double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
     
-    std::cout << "The most Isolated Place is: " << mostIsolatedPlace.name << endl;
-    std::cout << "Found in: " << elapsed_secs << " seconds." << endl;
+    std::cout << "The most Isolated Place is: " << mostIsolatedPlace.name << std::endl;
+    std::cout << "Found in: " << elapsed_secs << " seconds." << std::endl;
    
 }
 
 /*
      Measures performance on random data and compares to n log n.
      Prints results to the command line.
+     Tests on increasing orders of magnitude up to maxOrderOfMagnitude.
 */
 void measurePerformance(int maxOrderOfMagnitude){
     
     for(int i=1; i <= maxOrderOfMagnitude ; i++){
         
         int n = pow(10,i);
-        cout << "N = " << n  << ":" << endl;
+        std::cout << "N = " << n  << ":" << std::endl;
         auto placeCollection = PlaceCollection(n);
         
         clock_t begin = clock();
@@ -49,22 +47,22 @@ void measurePerformance(int maxOrderOfMagnitude){
         
         double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
         
-        cout << "      Search time:  " << elapsed_secs << "\n      Relative to n log(n) : "  << elapsed_secs/ (n * log(n)) << endl ;
+        std::cout << "      Search time:  " << elapsed_secs << "\n      Relative to n log(n) : "  << elapsed_secs/ (n * log(n)) << std::endl ;
     }
 }
 
 int main(int argc, const char * argv[]) {
     
-    cout << "Enter the path to a file containing a list of places, or  hit k to enter places from the keyboard or m to measure performance on random data." << endl;
+    std::cout << "Enter the path to a file containing a list of places, or  hit k to enter places from the keyboard or m to measure performance on random data." << std::endl;
     
-    string input;
+    std::string input;
     
-    cin >> input;
+    std::cin >> input;
     
     if(input == "k"){
-        cout << "Input places followed by end of file." << endl;
-       auto placeCollection = PlaceCollection(cin);
-       findMostIsolated(placeCollection);
+        std::cout << "Input places followed by end of file." << std::endl;
+        auto placeCollection = PlaceCollection(std::cin);
+        findMostIsolated(placeCollection);
     }
     else if(input == "m"){
         int ordersOfMagnitude = 6;
@@ -72,12 +70,12 @@ int main(int argc, const char * argv[]) {
     }
     else {
         //The input should be a file path
-        ifstream inputFile;
+        std::ifstream inputFile;
         
         inputFile.open(input);
         
         if (!inputFile) {
-            cerr << "Unable to open file";
+            std::cerr << "Unable to open file";
             exit(1);
         }
         
