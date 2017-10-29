@@ -53,9 +53,42 @@ void measurePerformance(int maxOrderOfMagnitude){
     }
 }
 
+bool testMostIsloatedPlace(std::string fileName, std::string expectedResult){
+    
+    std::ifstream inputFile;
+    //"usr/share/man/man1/
+    inputFile.open(fileName);
+    
+    if (!inputFile) {
+        std::cerr << "Unable to open file: " << fileName << std::endl;
+        //exit(1);
+        return false;
+    }
+    
+    auto placeCollection = PlaceCollection(inputFile);
+    
+    
+    Place mostIsolatedPlace = placeCollection.mostIsolated();
+    
+    bool result = mostIsolatedPlace.name == expectedResult;
+    
+    if (result) {
+        std::cout <<"Test for " << fileName << " data passed. Most isolated place is " << mostIsolatedPlace.name << "." <<  std::endl;
+    }
+    else {
+        std::cout << fileName << " test failed. Most isolated place found (" << mostIsolatedPlace.name <<  ") is not the expected result (" <<  expectedResult << ")."   << std::endl;
+    }
+    
+    return result;
+}
+
+
 int main(int argc, const char * argv[]) {
     
-    std::cout << "Enter the path to a file containing a list of places, or  hit k to enter places from the keyboard or m to measure performance on random data." << std::endl;
+    std::cout << "Enter the path to a file containing a list of places." << std::endl;
+    std::cout << "           or  enter k to enter places from the keyboard or m to measure performance on random data." << std::endl;
+    std::cout << "           or  enter m to measure performance on random data." << std::endl;
+    std::cout << "           or  enter t to run tests." << std::endl;
     
     std::string input;
     
@@ -69,6 +102,15 @@ int main(int argc, const char * argv[]) {
     else if(input == "m"){
         int ordersOfMagnitude = 6;
         measurePerformance(ordersOfMagnitude);
+    }
+    else if (input == "t") {
+        
+        bool test1 = testMostIsloatedPlace("problem_small.txt", "place6");
+        bool test2 = testMostIsloatedPlace("problem_big.txt", "place55163");
+        
+        if(test1 && test2){
+            std::cout << "All tests passed" << std::endl;
+        }
     }
     else {
         //The input should be a file path

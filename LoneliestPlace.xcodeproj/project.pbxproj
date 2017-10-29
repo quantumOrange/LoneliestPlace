@@ -9,17 +9,21 @@
 /* Begin PBXBuildFile section */
 		ED4141871FA32A72005A8E9F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED4141861FA32A72005A8E9F /* main.cpp */; };
 		ED4141921FA34284005A8E9F /* PlacesCollection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED4141901FA34284005A8E9F /* PlacesCollection.cpp */; };
+		ED4141BC1FA5DEBB005A8E9F /* problem_big.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = ED41418E1FA32E6F005A8E9F /* problem_big.txt */; };
+		ED4141BD1FA5DEBB005A8E9F /* problem_small.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = ED41418F1FA32E6F005A8E9F /* problem_small.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		ED4141811FA32A71005A8E9F /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 16;
 			files = (
+				ED4141BC1FA5DEBB005A8E9F /* problem_big.txt in CopyFiles */,
+				ED4141BD1FA5DEBB005A8E9F /* problem_small.txt in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
